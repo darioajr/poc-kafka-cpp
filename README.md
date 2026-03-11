@@ -20,9 +20,9 @@ docker-compose ps
 
 Abra o navegador em: http://localhost:8080
 
-### 4. Compilar e executar o código C++
+### 4. Restaurar pacotes e compilar o código C++
 
-Certifique-se de ter a biblioteca `librdkafka` instalada e compile o projeto.
+Restaure o pacote NuGet nativo `librdkafka.vcpkg` (via Visual Studio ou CLI) e compile o projeto. Veja a seção **Pacote NuGet Nativo** abaixo para mais detalhes.
 
 ## 📋 Serviços incluídos
 
@@ -86,11 +86,32 @@ docker-compose down -v
 - `docker-compose.yml` - Configuração do ambiente Kafka
 - `README.md` - Este arquivo
 
+## 📦 Pacote NuGet Nativo
+
+Este projeto utiliza o pacote NuGet nativo **librdkafka.vcpkg** (v2.10.1.3) para integração com Kafka em C++. O pacote está configurado no arquivo `packages.config`.
+
+### Restaurar pacotes via Visual Studio
+
+1. Abra a solução `PocKafkaCpp.sln` no Visual Studio.
+2. Clique com o botão direito na solução no **Solution Explorer**.
+3. Selecione **Restore NuGet Packages**.
+
+### Restaurar pacotes via CLI
+
+No diretório do projeto (`PocKafkaCpp/`), execute:
+
+```bash
+nuget restore PocKafkaCpp.sln
+```
+
+> **Nota:** É necessário ter o [NuGet CLI](https://www.nuget.org/downloads) instalado e disponível no PATH.
+
 ## ⚠️ Requisitos
 
 - Docker e Docker Compose instalados
-- Biblioteca librdkafka para compilar o código C++
+- Biblioteca librdkafka (instalada automaticamente via pacote NuGet nativo)
 - Visual Studio ou compilador C++ compatível
+- NuGet CLI (para restauração de pacotes via linha de comando)
 
 ## 🐛 Troubleshooting
 
